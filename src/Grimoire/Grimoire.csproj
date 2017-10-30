@@ -44,10 +44,14 @@
     <Compile Include="Helpers\IViewServices.cs" />
     <Compile Include="Helpers\ObservableObject.cs" />
     <Compile Include="Helpers\XamarinExtensions.cs" />
+    <Compile Include="Model\ClassSpell.cs" />
+    <Compile Include="Model\IClassSpell.cs" />
+    <Compile Include="Model\ISpell.cs" />
     <Compile Include="Model\Spell.cs" />
     <Compile Include="Model\SpellList.cs" />
     <Compile Include="Services\DataStore.cs" />
     <Compile Include="Services\IDataStore.cs" />
+    <Compile Include="Services\Spells.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\PickSpellListPageViewModel.cs" />
     <Compile Include="ViewModels\EditSpellListPageViewModel.cs" />
@@ -73,6 +77,9 @@
     <Reference Include="Syncfusion.Data.Portable">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.3.0.26\Xamarin\lib\pcl\Syncfusion.Data.Portable.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.DataSource.Portable">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.3.0.26\Xamarin\lib\pcl\Syncfusion.DataSource.Portable.dll</HintPath>
+    </Reference>
     <Reference Include="Syncfusion.GridCommon.Portable">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\15.3.0.26\Xamarin\lib\pcl\Syncfusion.GridCommon.Portable.dll</HintPath>
     </Reference>
@@ -93,7 +100,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Bard.csv" />
+    <EmbeddedResource Include="Druid.csv" />
+    <EmbeddedResource Include="Healer.csv" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="Spells.csv" />
+    <EmbeddedResource Include="Wizard.csv" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

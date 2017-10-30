@@ -10,7 +10,7 @@ namespace Grimoire.Model
     {
         public string ID { get; set; }
         public string Title { get; set; }
-        public string Class { get; set; }
+        public AmtgardClass Class { get; set; }
         public int Level { get; set; }
 
         public SpellList Clone()
@@ -21,4 +21,6 @@ namespace Grimoire.Model
             return clone;
         }
     }
+
+    public enum AmtgardClass { Bard, Druid, Healer, Wizard }
 }

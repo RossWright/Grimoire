@@ -32,7 +32,7 @@ namespace Grimoire.ViewModels
                 vm.Bought = Math.Max(0, vm.Bought - 1);
             });
 
-            Spells = Services.MockDataStore.Instance.LoadSpells(spellList)
+            Spells = Services.MockDataStore.Instance.LoadSpellsForSpellList(spellList)
                 .Select(_ => new SpellListEntryViewModel(_))
                 .ToList();
         }

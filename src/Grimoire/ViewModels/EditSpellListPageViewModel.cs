@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Grimoire.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,11 +54,12 @@ namespace Grimoire.ViewModels
 
         public string Class
         {
-            get { return _class; }
-            set { SetProperty(ref _class, value); }
+            get { return _class.ToString(); }
+            set { SetProperty(ref _class, (AmtgardClass)Enum.Parse(typeof(AmtgardClass), value)); }
         }
-        string _class = "Bard";
+        AmtgardClass _class = AmtgardClass.Bard;
         public static string[] Classes { get; } = { "Bard", "Druid", "Healer", "Wizard" };
+
         public string Level
         {
             get { return $"Level {_level}"; }

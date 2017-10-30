@@ -16,7 +16,7 @@ namespace Grimoire.ViewModels
             EditSpellListCommand = new Command(() =>
                 viewSvc.Navigation.PushAsync(new Views.EditSpellListPage(spellList)));
 
-            var spells = Services.MockDataStore.Instance.LoadSpells(spellList);
+            var spells = Services.MockDataStore.Instance.LoadSpellsForSpellList(spellList);
             Spells = spells.Select(_ => new SpellListEntryViewModel(_)).ToList();
         }
         public ICommand EditSpellListCommand { get; private set; }

@@ -17,5 +17,5 @@
 
     public enum SpellSchool { Command, Death, Flame, Neutral, Protection, Sorcery, Spirit, Subdual }
     public enum SpellType { Enchantment, Neutral, MagicBall, MetaMagic, Verbal }
-    public enum SpellRange { Self, Touch, TouchOthers, SelfTouchOthers, _20ft, _50ft }
+    public enum SpellRange { Self, Ball, Touch, TouchOthers, SelfTouchOthers, _20ft, _50ft }
 }

@@ -1,5 +1,6 @@
 ﻿using Grimoire.Services;
 using System;
+using System.Linq;
 
 namespace ConsoleTest
 {
@@ -7,8 +8,12 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            foreach (var spell in Spells.Wizard)
-                Console.WriteLine(spell.Name);
+            var spells = Spells.LoadSpellsFromCsv()
+                .ToDictionary(_ => _.Name, _ => _);
+            var bard = Spells.LoadClassSpells("Bard", spells);
+            var druid = Spells.LoadClassSpells("Druid", spells);
+            var healer = Spells.LoadClassSpells("Healer", spells);
+            var wizard = Spells.LoadClassSpells("Wizard", spells);
         }
     }
 }

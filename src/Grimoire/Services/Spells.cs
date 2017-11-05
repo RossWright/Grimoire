@@ -26,7 +26,7 @@ namespace Grimoire.Services
         public static List<IClassSpell> Healer { get; private set; }
         public static List<IClassSpell> Wizard { get; private set; }
 
-        static List<IClassSpell> LoadClassSpells(string csvFile, Dictionary<string, ISpell> common)
+        public static List<IClassSpell> LoadClassSpells(string csvFile, Dictionary<string, ISpell> common)
         {
             var assembly = typeof(Spells).GetTypeInfo().Assembly;
             var stream = assembly.GetManifestResourceStream($"Grimoire.{csvFile}.csv");
@@ -38,21 +38,28 @@ namespace Grimoire.Services
                 {
                     Regex csvParser = new Regex(",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
                     string[] fields = csvParser.Split(line);
-                    spells.Add(new ClassSpell(common[fields[6]])
+                    try
                     {
-                        Level = int.Parse(fields[0]),
-                        Cost = int.Parse(fields[1]),
-                        Max = int.Parse(fields[2]),
-                        Uses = int.Parse(fields[3]),
-                        UsesPer = (UsesPer)Enum.Parse(typeof(UsesPer), fields[4]),
-                        ChargeTimes = int.Parse(fields[5])
-                    });
+                        spells.Add(new ClassSpell(common[fields[6]])
+                        {
+                            Level = int.Parse(fields[0]),
+                            Cost = int.Parse(fields[1]),
+                            Max = string.IsNullOrWhiteSpace(fields[2]) ? 99 : int.Parse(fields[2]),
+                            Uses = string.IsNullOrWhiteSpace(fields[3]) ? 0 : int.Parse(fields[3]),
+                            UsesPer = string.IsNullOrWhiteSpace(fields[4]) ? (UsesPer?)null : (UsesPer)Enum.Parse(typeof(UsesPer), fields[4]),
+                            ChargeTimes = string.IsNullOrWhiteSpace(fields[5]) ? 0 : int.Parse(fields[5])
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
                 }
             }
             return spells;
         }
 
-        static List<ISpell> LoadSpellsFromCsv()
+        public static List<ISpell> LoadSpellsFromCsv()
         {
             var assembly = typeof(Spells).GetTypeInfo().Assembly;
             var stream = assembly.GetManifestResourceStream("Grimoire.Spells.csv");
@@ -64,18 +71,27 @@ namespace Grimoire.Services
                 {
                     Regex csvParser = new Regex(",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
                     string[] fields = csvParser.Split(line);
-                    spells.Add(new Spell
+                    try
                     {
-                        Name = fields[0],
-                        Type = (SpellType)Enum.Parse(typeof(SpellType), fields[1]),
-                        School = (SpellSchool)Enum.Parse(typeof(SpellSchool), fields[2]),
-                        Incant = fields[3],
-                        IncantTimes = int.Parse(fields[4]),
-                        Materials = fields[5],
-                        Effects = fields[6],
-                        Limits = fields[7],
-                        Notes = fields[8]
-                    });
+                        spells.Add(new Spell
+                        {
+                            Name = fields[0],
+                            Type = (SpellType)Enum.Parse(typeof(SpellType), fields[1]),
+                            School = (SpellSchool)Enum.Parse(typeof(SpellSchool), fields[2]),
+                            Range = string.IsNullOrWhiteSpace(fields[3]) ? (SpellRange?)null :
+                                (SpellRange)Enum.Parse(typeof(SpellRange), fields[3]),
+                            Incant = fields[4],
+                            IncantTimes = string.IsNullOrWhiteSpace(fields[5]) ? (int)1 : int.Parse(fields[5]),
+                            Materials = fields[6],
+                            Effects = fields[7],
+                            Limits = fields[8],
+                            Notes = fields[9]
+                        });
+                    }
+                    catch(Exception ex)
+                    {
+
+                    }
                 }
             }
             return spells;

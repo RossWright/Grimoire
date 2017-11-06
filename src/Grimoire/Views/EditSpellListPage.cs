@@ -10,7 +10,7 @@ namespace Grimoire.Views
 {
 	public class EditSpellListPage : ContentPageWithViewServices
 	{
-        public EditSpellListPage(Model.SpellList spellList)
+        public EditSpellListPage(Model.ISpellList spellList)
 		{
             Title = spellList.Title;
             BindingContext = new EditSpellListPageViewModel(this, spellList);

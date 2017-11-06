@@ -35,7 +35,7 @@ namespace Grimoire.ViewModels
         { 
             get
             {
-                if (_spell.UsesPer == null) return "-";
+                if (_spell.UsesPer == null) return string.Empty;
                 if (_spell.UsesPer == UsesPer.Unlimited) return "Unlimited";
                 if (_spell.ChargeTimes > 0) return $"{_spell.Uses * _bought}/{_spell.UsesPer} (Charge x{_spell.ChargeTimes})";
                 return $"{_spell.Uses * _bought}/{_spell.UsesPer}";
@@ -53,6 +53,8 @@ namespace Grimoire.ViewModels
                 SetProperty(ref _bought, value);
                 OnPropertyChanged(nameof(CanBuy));
                 OnPropertyChanged(nameof(CanSell));
+                OnPropertyChanged(nameof(HasBought));
+                OnPropertyChanged(nameof(Uses));
             }
         }
         int _bought = 0;

@@ -11,7 +11,7 @@ namespace Grimoire.ViewModels
 {
     public class EditSpellListPageViewModel : SpellListViewModel
     {
-        public EditSpellListPageViewModel(IViewServices viewSvc, Model.SpellList spellList)
+        public EditSpellListPageViewModel(IViewServices viewSvc, ISpellList spellList)
             : base(spellList)
         {
             _title = spellList.Title;

@@ -49,7 +49,7 @@
     <Compile Include="Model\ISpell.cs" />
     <Compile Include="Model\Spell.cs" />
     <Compile Include="Model\SpellList.cs" />
-    <Compile Include="Services\DataStore.cs" />
+    <Compile Include="Services\MockDataStore.cs" />
     <Compile Include="Services\IDataStore.cs" />
     <Compile Include="Services\Spells.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
@@ -100,12 +100,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Bard.csv" />
-    <EmbeddedResource Include="Druid.csv" />
-    <EmbeddedResource Include="Healer.csv" />
+    <EmbeddedResource Include="Data\Bard.csv" />
+    <EmbeddedResource Include="Data\Druid.csv" />
+    <EmbeddedResource Include="Data\Healer.csv" />
     <None Include="packages.config" />
-    <EmbeddedResource Include="Spells.csv" />
-    <EmbeddedResource Include="Wizard.csv" />
+    <EmbeddedResource Include="Data\Spells.csv" />
+    <EmbeddedResource Include="Data\Wizard.csv" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

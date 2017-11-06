@@ -20,11 +20,13 @@ namespace Grimoire.Services
                 {
                     ID = Guid.NewGuid().ToString(),
                     Title = $"{adjective}{charClass}",
-                    Class = AmtgardClass.Bard,
+                    Class = charClass,
                     Level = random.Next(6) + 1
                 };
             }));
+            spellListSpells = spellLists.ToDictionary(_ => _.ID, _ => LoadSpellsForSpellList(_).ToList());
         }
+
         static T PickOne<T>(params T[] choices)
         {
             random = random ?? new Random();
@@ -33,27 +35,37 @@ namespace Grimoire.Services
         }
         static Random random;
 
-        List<SpellList> spellLists;
+        private readonly List<SpellList> spellLists;
+        private readonly Dictionary<string, List<IClassSpell>> spellListSpells;
 
-        public IEnumerable<SpellList> Load() => spellLists
+        public IEnumerable<ISpellList> Load() => spellLists
             .OrderBy(_ => _.Class)
             .ThenByDescending(_ => _.Level)
             .ThenByDescending(_ => _.Title);
         
-        public void Save(SpellList spellList)
+        public void Save(ISpellList spellList)
         {
             Delete(spellList);
-            spellLists.Add(spellList);
+            spellLists.Add((SpellList)spellList);
         }
 
-        public void Delete(SpellList spellList)
+        public void Delete(ISpellList spellList)
         {
             var index = spellLists.FindIndex(_ => _.ID == spellList.ID);
             if (index != -1)
                 spellLists.RemoveAt(index);
         }
 
-        public IEnumerable<ClassSpell> LoadSpellsForSpellList(SpellList spellList)
+        public IEnumerable<IClassSpell> LoadSpellsForSpellList(ISpellList spellList)
+        {
+            var classSpells = Spells.ByClass(spellList.Class);
+            return classSpells
+                .Where(_ => _.Level <= spellList.Level)
+                .OrderBy(_ => _.Level)
+                .ThenBy(_ => _.Name);
+        }
+        
+        public void SaveSpellsForSpellList(ISpellList spellList, IEnumerable<IClassSpell> classSpells)
         {
             throw new NotImplementedException();
         }

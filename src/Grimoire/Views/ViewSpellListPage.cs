@@ -1,4 +1,5 @@
-﻿using Grimoire.ViewModels;
+﻿using Grimoire.Model;
+using Grimoire.ViewModels;
 using Syncfusion.Data;
 using Syncfusion.ListView.XForms;
 using System;
@@ -12,7 +13,7 @@ namespace Grimoire.Views
 {
 	public class ViewSpellListPage : ContentPageWithViewServices
 	{
-		public ViewSpellListPage(Model.SpellList spellList)
+		public ViewSpellListPage(ISpellList spellList)
 		{
             Title = spellList.Title;
             BindingContext = new ViewSpellListPageViewModel(this, spellList);
@@ -37,39 +38,39 @@ namespace Grimoire.Views
                         BackgroundColor = Color.Green,
                         FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
                         Margin = new Thickness(0)
-                    }.AndBind(Label.TextProperty, nameof(SpellListEntryViewModel.Level))
+                    }.AndBind(Label.TextProperty, "Key")
                 }),
                 ItemTemplate = new DataTemplate(() =>
-                new Grid
-                {
-                    Margin = new Thickness(0),
-                    Padding = new Thickness(0),
-                    RowDefinitions =
+                    new Grid
                     {
-                        new RowDefinition { Height = GridLength.Auto },
-                        new RowDefinition { Height = GridLength.Auto },
-                        new RowDefinition { Height = GridLength.Star }
-                    },
-                    ColumnDefinitions =
-                    {
-                        new ColumnDefinition { Width = GridLength.Star },
-                        new ColumnDefinition { Width = GridLength.Auto },
-                    }
-                }.AddCells(
-                    new GridCell(0, 0, new Label
-                    {
-                        FontAttributes = FontAttributes.Bold,
-                        TextColor = Color.Black,
-                        FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
-                        Margin = new Thickness(0)
-                    }.AndBind(Label.TextProperty, nameof(SpellListEntryViewModel.Name))),
-                    new GridCell(1, 0, new Label
-                    {
-                        FontAttributes = FontAttributes.Bold,
-                        TextColor = Color.Black,
-                        FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
-                        Margin = new Thickness(0)
-                    }.AndBind(Label.TextProperty, nameof(SpellListEntryViewModel.Uses)))))
+                        Margin = new Thickness(0),
+                        Padding = new Thickness(0),
+                        RowDefinitions =
+                        {
+                            new RowDefinition { Height = GridLength.Auto },
+                            new RowDefinition { Height = GridLength.Auto },
+                            new RowDefinition { Height = GridLength.Star }
+                        },
+                        ColumnDefinitions =
+                        {
+                            new ColumnDefinition { Width = GridLength.Star },
+                            new ColumnDefinition { Width = GridLength.Auto },
+                        }
+                    }.AddCells(
+                        new GridCell(0, 0, new Label
+                        {
+                            FontAttributes = FontAttributes.Bold,
+                            TextColor = Color.Black,
+                            FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+                            Margin = new Thickness(0)
+                        }.AndBind(Label.TextProperty, nameof(SpellListEntryViewModel.Name))),
+                        new GridCell(1, 0, new Label
+                        {
+                            FontAttributes = FontAttributes.Bold,
+                            TextColor = Color.Black,
+                            FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
+                            Margin = new Thickness(0)
+                        }.AndBind(Label.TextProperty, nameof(SpellListEntryViewModel.Uses)))))
             }.AndBind(SfListView.ItemsSourceProperty, nameof(PickSpellListPageViewModel.Spells));
 
             listView.DataSource.GroupDescriptors.Add(new Syncfusion.DataSource.GroupDescriptor()

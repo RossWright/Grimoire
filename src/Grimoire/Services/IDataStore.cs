@@ -5,10 +5,11 @@ namespace Grimoire.Services
 {
     public interface IDataStore
     {
-        IEnumerable<SpellList> Load();
-        void Save(SpellList spellList);
-        void Delete(SpellList spellList);
+        IEnumerable<ISpellList> Load();
+        void Save(ISpellList spellList);
+        void Delete(ISpellList spellList);
 
-        IEnumerable<ClassSpell> LoadSpellsForSpellList(SpellList spellList);
+        IEnumerable<IClassSpell> LoadSpellsForSpellList(ISpellList spellList);
+        void SaveSpellsForSpellList(ISpellList spellList, IEnumerable<IClassSpell> classSpells);
     }
 }

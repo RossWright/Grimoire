@@ -11,9 +11,9 @@ namespace Grimoire.ViewModels
         public string Title => SpellList?.Title ?? "Untitled";
         public string Subtitle => SpellList != null ? $"{SpellList.Class} L{SpellList.Level}" : "";
 
-        public Model.SpellList SpellList { get; private set; }
+        public Model.ISpellList SpellList { get; private set; }
 
-        public SpellListViewModel(Model.SpellList spellList)
+        public SpellListViewModel(Model.ISpellList spellList)
         {
             SpellList = spellList;
         }

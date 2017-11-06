@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Grimoire.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace Grimoire.ViewModels
 {
     public class ViewSpellListPageViewModel : SpellListViewModel
     {
-        public ViewSpellListPageViewModel(IViewServices viewSvc, Model.SpellList spellList)
+        public ViewSpellListPageViewModel(IViewServices viewSvc, ISpellList spellList)
             : base(spellList)
         {
             EditSpellListCommand = new Command(() =>

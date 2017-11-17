@@ -1,0 +1,84 @@
+Grimoire Design...
+
+
+Spell List View
+
+    - Gather neutrals/equipment at the top as a subheader
+    - Group by spell type with slightly different format for each...
+        - Verbals
+            - Uses
+            - School (Range if 50)
+            - Incant
+            - Short Description
+        - Balls
+            - Ball Color
+            - School (Range if 50)
+            - Incant
+            - Short Description
+        - Enchantments
+            - Uses
+            - Strip Color(s)
+            - Incant
+            - Short Description
+        - Meta-magic
+            - Uses
+            - Short Description
+        - Neutral (if has Frequency)
+            - Uses
+            - Short Description
+
+Pick Spells View
+    - Ordered section from highest level to lowest
+    - Headers are  Level X (Y Points Remaining)
+    - Buttons next to spells to buy/sell
+    - As the points available at a level drop, close any spells that cost more than available
+    - Spells can be expanded/collapses to see full writeup
+    - Spell summary view:
+            Name of Spell   Material   Uses
+            Short Description
+            Cost: XXX    Max: XXX   Purchased: XXX 
+    - Spell full view:
+            Name of Spell   Material   Uses
+            Long Description
+            Cost: XXX    Max: XXX   Purchased: XXX 
+        
+    - Non-Eqipt Neutral Behavior
+        Experienced 
+            - when purchased, prompts to pick a 4th level or lower verbal
+            - flips a bit on that verbal to change uses info for the charge
+        Avatar of Nature
+            - changes the range of enchantments 4th and lower to self
+        Battlemage
+            - blocks/undoes purchase of enchantments and magic Balls
+            - changes Ambulant uses to Unlimited
+        Combat Caster
+            - No change needed
+        Dervish
+            - Equipment Neutrals cost double
+            - Uses Times for all verbals are doubled
+        Evoker
+            - Locks out verbals of range not equal to Touch or self
+            - Adds Charge x10 to Elemental Barrage
+        Legend
+            - Extension uses is doubled
+            - Swift is unavailable for purchase
+        Necromancer
+            - Death school magic gets charge x3
+            - Can have up to 5 combined GUM and UM Enchantments
+            - Lock out enchantments from protection school
+        Priest
+            - All meta-magic becomes 1/life charge x3
+            - Heal costs 0 pts
+        Ranger
+            - All Equipment cost becomes 0
+            - Cost of enchantments is doubled
+        Summoner
+            - Locks out verbals of range not equal to Touch or self
+            - Enchantment uses are doubled
+            - Locks out Equipment Neutrals above 2nd level
+        Warder
+            - Protection Enchantment uses are doubled
+            - Lockout Death, Command and Subdual Schools
+        Warlock
+            - Verbals in Death and Flame get double uses
+            - Lockout Verbals not in Death or Flame Schools

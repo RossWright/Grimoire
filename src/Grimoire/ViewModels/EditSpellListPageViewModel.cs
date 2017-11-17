@@ -65,7 +65,7 @@ namespace Grimoire.ViewModels
             get { return $"Level {_level}"; }
             set
             {
-                if (int.TryParse(value[0].ToString(), out var level) &&
+                if (int.TryParse(value[6].ToString(), out var level) &&
                     level >= 1 && level <= 6)
                     SetProperty(ref _level, level);
             }

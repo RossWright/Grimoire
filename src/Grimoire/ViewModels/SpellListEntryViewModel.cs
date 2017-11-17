@@ -30,8 +30,9 @@ namespace Grimoire.ViewModels
         public int Level => _spell.Level;
         public int Cost => _spell.Cost;
         public int Max => _spell.Max;
+        public string MaxText => _spell.Max == 99 ? "-" : _spell.Max.ToString();
 
-        public string Uses
+        public string Uses 
         { 
             get
             {
@@ -42,8 +43,16 @@ namespace Grimoire.ViewModels
             }
         }
 
+        public bool IsTooExpensive
+        {
+            get { return _isTooExpensive; }
+            set { SetProperty(ref _isTooExpensive, value); }
+        }
+        private bool _isTooExpensive = false;
+
+        public bool IsVisible => _bought > 0 || !IsTooExpensive;
         public bool HasBought =>  _bought > 0;
-        public bool CanBuy => Cost > 0 && _bought < Max;
+        public bool CanBuy => Cost > 0 && _bought < Max && !IsTooExpensive;
         public bool CanSell => Cost > 0 && _bought > 0;
         public int Bought
         {
